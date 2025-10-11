@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compilar",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "src/*.c",
+                "-I", "src/headers",
+                "-o", "build/sistema.exe",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-mconsole"
+            ]
+        },
+        {
+            "label": "Executar",
+            "type": "shell",
+            "command": "build\\sistema.exe",
+            "dependsOn": "Compilar",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

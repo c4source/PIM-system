@@ -6,14 +6,19 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "src/*.c",
-                "-I", "src/headers",
-                "-o", "build/sistema.exe",
-                "-Wall",
-                "-Wextra",
-                "-Wpedantic",
-                "-mconsole"
-            ]
+    "src/main.c",
+    "src/aluno.c",
+    "src/turma.c",
+    "src/aula.c",
+    "src/atividade.c",
+    "src/utils.c",
+    "-I", "src/headers",
+    "-o", "build/sistema.exe",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-mconsole"
+],
         },
         {
             "label": "Executar",

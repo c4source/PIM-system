@@ -11,5 +11,4 @@ void listarAtividades() {
 
 void cadastrarAtividade() {
     systemPython("scripts/write_json_atividades.py", "data/atividades.json");
-    printf("Atividade cadastrada com sucesso!\n");
 }

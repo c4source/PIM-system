@@ -11,5 +11,4 @@ void listarAlunos() {
 
 void cadastrarAluno() {
     systemPython("scripts/write_json_aluno.py", "data/alunos.json");
-    printf("Aluno cadastrado com sucesso!\n");
 }

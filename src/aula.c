@@ -11,5 +11,4 @@ void listarAulas() {
 
 void cadastrarAula() {
     systemPython("scripts/write_json_aulas.py", "data/aulas.json");
-    printf("Aula cadastrado com sucesso!\n");
 }

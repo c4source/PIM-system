@@ -3,6 +3,7 @@
 #include "headers/turma.h"
 #include "headers/aula.h"
 #include "headers/atividade.h"
+#include "headers/professor.h"
 
 int main() {
     int opcao;
@@ -17,7 +18,9 @@ int main() {
         printf("6. Cadastrar aula\n");
         printf("7. Listar atividades\n");
         printf("8. Cadastrar atividade\n");
-        printf("9. Sair\n");
+        printf("9. Listar Professores\n");
+        printf("10. Cadastrar Professor\n");
+        printf("11. Sair\n");
         printf("Escolha uma opcao: ");
 
         if (scanf("%d", &opcao) != 1) {
@@ -34,11 +37,13 @@ int main() {
             case 6: cadastrarAula(); break;
             case 7: listarAtividades(); break;
             case 8: cadastrarAtividade(); break;
-            case 9: printf("Saindo do sistema...\n"); break;
+            case 9: listarProfessores(); break;
+            case 10: cadastrarProfessor(); break;
+            case 11: printf("Saindo do sistema...\n"); break;
             default: printf("Opcao invalida! Tente novamente.\n");
         }
 
-    } while(opcao != 9);
+    } while(opcao != 11);
 
     return 0;
 }

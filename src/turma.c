@@ -11,5 +11,4 @@ void listarTurmas() {
 
 void cadastrarTurma() {
     systemPython("scripts/write_json_turmas.py", "data/turmas.json");
-    printf("Turma cadastrado com sucesso!\n");
 }

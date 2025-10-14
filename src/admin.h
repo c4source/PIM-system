@@ -12,6 +12,9 @@ typedef struct {
 } Administrador;
 
 void cadastrarAdministrador();
-void listarAdminstrador();
+void listarAdministrador();
+
+extern Administrador admin[MAX_ADM]; 
+extern int totalAdmin;
 
 #endif

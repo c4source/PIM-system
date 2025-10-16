@@ -42,3 +42,31 @@ void listarAdministrador(void) {
     }
 
 }
+// Menu de administrador//
+void menuAdministrador(void) {
+    int opcao; 
+
+    do { 
+        LimparTela();
+        printf("\n== MENU DO ADMINISTRADOR ==\n");
+        printf("1. Cadastrar Administrador\n");
+        printf("2. Listar Administradores\n");
+        printf("0. Sair\n");
+        printf("Opcao desejada: ");
+        
+        if (scanf("%d", &opcao) != 1) {
+            opcao = -1; // Define uma opção inválida
+        }
+    }   while (getchar() != '\n');
+            switch (opcao){
+                case 1:
+                    cadastrarAdministrador();
+                    break;
+                case 2:
+                    listarAdministrador();
+                    break;
+                case 0: 
+                    printf("Saindo... \n");
+                    break;    
+            }   
+}

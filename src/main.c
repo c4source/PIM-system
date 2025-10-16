@@ -6,6 +6,7 @@
 #include "headers/aula.h"
 #include "headers/atividade.h"
 #include "headers/professor.h"
+#include "headers/administrador.h"
 
 void menuPrincipal();
 void menuAlunos();
@@ -13,6 +14,7 @@ void menuTurmas();
 void menuAulas();
 void menuAtividades();
 void menuProfessores();
+void menuAdministrador();
 
 int main() {
     menuPrincipal();
@@ -44,6 +46,9 @@ void menuPrincipal(){
             break;
         case 2:
             menuProfessores();
+            break;
+        case 6:
+            menuAdministrador();
             break;
         
         default:
@@ -139,6 +144,56 @@ void menuProfessores(){
             system("cls");
             listarProfessores();
             printf("Pressione qualquer tecla para Fechar a listagem de professores.");
+            _getch();
+            break;
+        case 5:
+            printf("Voltando ao menu Principal...");
+            break;
+        default:
+            break;
+        }
+
+        }while(opcao != 5 );
+
+}
+
+void menuAdministrador(){
+ int opcao;
+
+    do{
+        system("cls");
+
+        printf("==========MENU DE ADMINISTRADOR==========\n");
+        printf("1. Cadastrar Administrador\n");
+        printf("2. Editar Administrador\n");
+        printf("3. Excluir Administrador\n");
+        printf("4. Lista de Administrador\n");
+        printf("5. Voltar ao Menu Anterior\n");
+        printf("\nEscolha uma opcao: ");
+
+        scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+        case 1:
+            system("cls");
+            cadastrarAdministrador();
+            _getch();
+            break;
+        case 2:
+            system("cls");
+            editarAdministrador();
+            _getch();
+            break;
+        case 3:
+            system("cls");
+            excluirAdministrador();
+            _getch();
+            break;
+        case 4:
+            system("cls");
+            listarAdministradores();
+            printf("Pressione qualquer tecla para Fechar a listagem de administradores.");
             _getch();
             break;
         case 5:

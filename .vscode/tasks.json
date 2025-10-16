@@ -2,33 +2,33 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Compilar",
+            "label": "Compilar C",
             "type": "shell",
-            "command": "gcc",
+            "command": "C:\\mingw64\\bin\\gcc.exe",
             "args": [
-    "src/main.c",
-    "src/aluno.c",
-    "src/turma.c",
-    "src/aula.c",
-    "src/atividade.c",
-    "src/utils.c",
-    "-I", "src/headers",
-    "-o", "build/sistema.exe",
-    "-Wall",
-    "-Wextra",
-    "-Wpedantic",
-    "-mconsole"
-],
-        },
-        {
-            "label": "Executar",
-            "type": "shell",
-            "command": "build\\sistema.exe",
-            "dependsOn": "Compilar",
+                "src/main.c",
+                "src/aluno.c",
+                "src/turma.c",
+                "src/aula.c",
+                "src/atividade.c",
+                "src/utils.c",
+                "src/professor.c",
+                "src/administrador.c",
+                "-I",
+                "src/headers",
+                "-o",
+                "build/sistema.exe",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-mconsole"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Compila o projeto C"
         }
     ]
 }

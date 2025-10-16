@@ -42,6 +42,9 @@ void menuPrincipal(){
         case 1:
             menuAlunos();
             break;
+        case 2:
+            menuProfessores();
+            break;
         
         default:
             break;
@@ -53,7 +56,6 @@ void menuPrincipal(){
 
 void menuAlunos(){
     int opcao;
-
     do{
         system("cls");
 
@@ -98,5 +100,54 @@ void menuAlunos(){
         }
 
     }while(opcao != 5 );
+}
+
+void menuProfessores(){
+    int opcao;
+
+    do{
+        system("cls");
+
+        printf("==========MENU DE PROFESSORES==========\n");
+        printf("1. Cadastrar Professor\n");
+        printf("2. Editar Professor\n");
+        printf("3. Excluir Professor\n");
+        printf("4. Lista de Professores\n");
+        printf("5. Voltar ao Menu Anterior\n");
+        printf("\nEscolha uma opcao: ");
+
+        scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+        case 1:
+            system("cls");
+            cadastrarProfessor();
+            _getch();
+            break;
+        case 2:
+            system("cls");
+            editarProfessor();
+            _getch();
+            break;
+        case 3:
+            system("cls");
+            excluirProfessor();
+            _getch();
+            break;
+        case 4:
+            system("cls");
+            listarProfessores();
+            printf("Pressione qualquer tecla para Fechar a listagem de professores.");
+            _getch();
+            break;
+        case 5:
+            printf("Voltando ao menu Principal...");
+            break;
+        default:
+            break;
+        }
+
+        }while(opcao != 5 );
 
 }

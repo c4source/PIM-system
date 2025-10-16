@@ -12,3 +12,11 @@ void listarProfessores() {
 void cadastrarProfessor() {
     systemPython("scripts/write_json_professor.py", "data/professores.json");
 }
+
+void editarProfessor() {
+    systemPython("scripts/edit_json_professor.py", "data/professores.json");
+}
+
+void excluirProfessor() {
+    systemPython("scripts/delete_json_professor.py", "data/professores.json");
+}

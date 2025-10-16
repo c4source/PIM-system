@@ -1,49 +1,102 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
 #include "headers/aluno.h"
 #include "headers/turma.h"
 #include "headers/aula.h"
 #include "headers/atividade.h"
 #include "headers/professor.h"
 
+void menuPrincipal();
+void menuAlunos();
+void menuTurmas();
+void menuAulas();
+void menuAtividades();
+void menuProfessores();
+
 int main() {
+    menuPrincipal();
+    return 0;
+}
+
+void menuPrincipal(){
     int opcao;
 
-    do {
-        printf("\n==== Sistema Academico ====\n");
-        printf("1. Listar alunos\n");
-        printf("2. Cadastrar aluno\n");
-        printf("3. Listar turmas\n");
-        printf("4. Cadastrar turma\n");
-        printf("5. Listar aulas\n");
-        printf("6. Cadastrar aula\n");
-        printf("7. Listar atividades\n");
-        printf("8. Cadastrar atividade\n");
-        printf("9. Listar Professores\n");
-        printf("10. Cadastrar Professor\n");
-        printf("11. Sair\n");
-        printf("Escolha uma opcao: ");
+    do{
+        system("cls");
 
-        if (scanf("%d", &opcao) != 1) {
-            while (getchar() != '\n'); // limpa buffer
-            opcao = 0;
+        printf("==========MENU PRINCIPAL==========\n");
+        printf("1. Menu de Alunos\n");
+        printf("2. Menu de Professores\n");
+        printf("3. Menu de Atividades\n");
+        printf("4. Menu de Aulas\n");
+        printf("5. Menu de Turmas\n");
+        printf("6. Menu do Administrador\n");
+        printf("7. Encerrar o Programa\n");
+        printf("\nEscolha uma opcao: ");
+
+        scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+        case 1:
+            menuAlunos();
+            break;
+        
+        default:
+            break;
         }
 
-        switch(opcao) {
-            case 1: listarAlunos(); break;
-            case 2: cadastrarAluno(); break;
-            case 3: listarTurmas(); break;
-            case 4: cadastrarTurma(); break;
-            case 5: listarAulas(); break;
-            case 6: cadastrarAula(); break;
-            case 7: listarAtividades(); break;
-            case 8: cadastrarAtividade(); break;
-            case 9: listarProfessores(); break;
-            case 10: cadastrarProfessor(); break;
-            case 11: printf("Saindo do sistema...\n"); break;
-            default: printf("Opcao invalida! Tente novamente.\n");
+
+    }while(opcao != 7);
+}
+
+void menuAlunos(){
+    int opcao;
+
+    do{
+        system("cls");
+
+        printf("==========MENU DE ALUNOS==========\n");
+        printf("1. Cadastrar Aluno\n");
+        printf("2. Editar Aluno\n");
+        printf("3. Excluir Aluno\n");
+        printf("4. Lista de Alunos\n");
+        printf("5. Voltar ao Menu Anterior\n");
+        printf("\nEscolha uma opcao: ");
+
+        scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+        case 1:
+            system("cls");
+            cadastrarAluno();
+            _getch();
+            break;
+        case 2:
+            system("cls");
+            editarAluno();
+            _getch();
+            break;
+        case 3:
+            system("cls");
+            excluirAluno();
+            _getch();
+            break;
+        case 4:
+            system("cls");
+            listarAlunos();
+            printf("Pressione qualquer tecla para Fechar a listagem de alunos.");
+            _getch();
+            break;
+        case 5:
+            printf("Voltando ao menu Principal...");
+            break;
+        default:
+            break;
         }
 
-    } while(opcao != 11);
+    }while(opcao != 5 );
 
-    return 0;
 }

@@ -9,5 +9,7 @@ typedef struct {
 
 void listarAlunos();
 void cadastrarAluno();
+void editarAluno();
+void excluirAluno();
 
 #endif

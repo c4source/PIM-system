@@ -12,3 +12,12 @@ void listarAlunos() {
 void cadastrarAluno() {
     systemPython("scripts/write_json_aluno.py", "data/alunos.json");
 }
+
+void editarAluno() {
+    systemPython("scripts/edit_json_aluno.py", "data/alunos.json");
+}
+
+void excluirAluno() {
+    systemPython("scripts/delete_json_aluno.py", "data/alunos.json");
+}
+

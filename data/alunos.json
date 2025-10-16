@@ -1,7 +1,7 @@
 [
     {
         "id": "1",
-        "nome": "Gabriel Pinheiro Fuentes Godinho",
+        "nome": "Gabriel Fuentes",
         "matricula": "47063781847"
     },
     {
@@ -18,5 +18,10 @@
         "id": "4",
         "nome": "Matheus",
         "matricula": "40646084"
+    },
+    {
+        "id": "7",
+        "nome": "Eduardo ",
+        "matricula": "886523"
     }
 ]

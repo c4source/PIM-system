@@ -1,24 +1,10 @@
 #include <stdio.h>
 #include <string.h>
-#include "login.h"   //inclui a definição da função realizarLogin().
-#include "utils.h"  //inclui a definição da função LimparTela() e pausar().
+#include "headers/login.h"  //inclui a definição da função realizarLogin().
+#include "headers/utils.h"  //inclui a definição da função LimparTela() e pausar().
 
-//Contantes para os tipos de usuário e retorno.
 
-#define ADMIN_ROLE 1       //Código de retorno para Administrador  
-#define PROFESSOR_ROLE 2   //Código de retorno para Professor
-#define ALUNO_ROLE 3       //Código de retorno para Aluno 
-#define SAIR_SISTEMA -1    //Código de retorno para sair do sistema 
-#define MAX_TENTATIVAS 3   // Número máximo de tentativas de Login
-
-// Estrutura para armazenar credencias temporárias de Login.
-typedef struct {
-
-    char login[30];
-    char senha[30];
-    int tipo; //Tipo de usuarios: 1- Admin 2- Professor 3- Aluno
-
-} Usuario;    //Usuario contem os atributos de login senha e tipo de usuario 
+ 
 
 Usuario usuarios[] = { //Cria um novo tipo de dado 
 
@@ -29,25 +15,20 @@ Usuario usuarios[] = { //Cria um novo tipo de dado
 };
 int totalUsuarios = 3;
 
-//Função para limpar o buffer 
-void limparBufferEntrada() {
-    int c;
-    while ((c = getchar())) != '\n' && c != EOF;
-}
 
 int realizarLogin() {
-    
     char login[30];
     char senha[30];
     int tentativas = 0; 
 
     while(tentativas < MAX_TENTATIVAS) {
-        priontf("=====================================\n")
-        printf("          TELA DE LOGIN (%d/%d)" + 1, MAX_TENTATIVAS);
-        printf("=====================================\n\n")
+        printf("=====================================\n");
+        printf("          TELA DE LOGIN\n");
+        printf("   (%d tentativas restantes)\n", MAX_TENTATIVAS - tentativas);
+        printf("=====================================\n\n");
 
         printf("Digite seu login: (ou 'sair' para encerrar): ");
-        if (fgets(login, sizeof(loginm), stdin) == NULL) 
+        if (fgets(login, sizeof(login), stdin) == NULL) 
             return SAIR_SISTEMA;
        
         login[strcspn(login, "\n")] = '\0';  //Remove o caractere ENTER do final da string  
@@ -56,10 +37,29 @@ int realizarLogin() {
             return SAIR_SISTEMA;
 
         printf("Digite sua senha: ");
+        if (fgets(senha, sizeof(senha), stdin) == NULL)
+            return SAIR_SISTEMA;
+        
+        senha[strcspn(senha, "\n")] = '\0';  //Remove o caractere ENTER do final da string 
+        
+        //Verifica as credenciaias
+        for (int i = 0; i < totalUsuarios; i++) {
+            if (strcmp(login, usuarios[i].login) == 0 && strcmp(senha, usuarios[i].senha) == 0) {
+                
+                printf("\nLogin bem-sucessido! Bem-vindo(a), %s.\n", login);
+                pausar();
+                return usuarios[i].tipo; // Retorna o tipo de usuario. 
+            }    
+        }
 
-
+        tentativas++;
+        printf("\nLogin ou senha incorretos. Tentativas restantes: %d.\n", MAX_TENTATIVAS - tentativas);
+        pausar();
+    
     }
-
+    printf("\n Limite de tentavias excedido. O sistema sera encerrado.\n");
+    pausar();
+    return SAIR_SISTEMA;
 }
 
 

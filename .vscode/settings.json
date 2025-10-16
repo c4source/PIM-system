@@ -1,0 +1,8 @@
+{
+    "C_Cpp.dimInactiveRegions": false,
+    "files.associations": {
+        "login.h": "c",
+        "utils.h": "c",
+        "string.h": "c"
+    }
+}

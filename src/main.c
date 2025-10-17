@@ -47,12 +47,24 @@ void menuPrincipal(){
         case 2:
             menuProfessores();
             break;
+        case 3:
+            menuAtividades();
+            break;
+        case 4:
+            menuAulas();
+            break;
+        case 5:
+            menuTurmas();
+            break;
         case 6:
             menuAdministrador();
             break;
-        
-        default:
+        case 7:
+            printf("Saindo...");
             break;
+        default:
+            printf("Opcao invalida!\n");
+            _getch();
         }
 
 
@@ -205,4 +217,145 @@ void menuAdministrador(){
 
         }while(opcao != 5 );
 
+}
+
+void menuTurmas(){
+    int opcao;
+
+    do{
+        system("cls");
+        printf("==========MENU DE TURMAS==========\n");
+        printf("1. Cadastrar Turma\n");
+        printf("2. Editar Turma\n");
+        printf("3. Excluir Turma\n");
+        printf("4. Lista de Turmas\n");
+        printf("5. Voltar ao Menu Anterior\n");
+        printf("\nEscolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao){
+            case 1:
+                system("cls");
+                cadastrarTurma();
+                _getch();
+                break;
+            case 2:
+                system("cls");
+                editarTurma();
+                _getch();
+                break;
+            case 3:
+                system("cls");
+                excluirTurma();
+                _getch();
+                break;
+            case 4:
+                system("cls");
+                listarTurmas();
+                printf("Pressione qualquer tecla para voltar...");
+                _getch();
+                break;
+            case 5:
+                printf("Voltando ao menu principal...\n");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+                _getch();
+        }
+
+    }while(opcao != 5);
+}
+
+void menuAulas(){
+    int opcao;
+
+    do{
+        system("cls");
+        printf("==========MENU DE AULAS==========\n");
+        printf("1. Cadastrar Aula\n");
+        printf("2. Editar Aula\n");
+        printf("3. Excluir Aula\n");
+        printf("4. Lista de Aulas\n");
+        printf("5. Voltar ao Menu Anterior\n");
+        printf("\nEscolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao){
+            case 1:
+                system("cls");
+                cadastrarAula();
+                _getch();
+                break;
+            case 2:
+                system("cls");
+                editarAula();
+                _getch();
+                break;
+            case 3:
+                system("cls");
+                excluirAula();
+                _getch();
+                break;
+            case 4:
+                system("cls");
+                listarAulas();
+                printf("Pressione qualquer tecla para voltar...");
+                _getch();
+                break;
+            case 5:
+                printf("Voltando ao menu principal...\n");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+                _getch();
+        }
+
+    }while(opcao != 5);
+}
+
+void menuAtividades(){
+    int opcao;
+
+    do{
+        system("cls");
+        printf("==========MENU DE ATIVIDADES==========\n");
+        printf("1. Cadastrar Atividade\n");
+        printf("2. Editar Atividade\n");
+        printf("3. Excluir Atividade\n");
+        printf("4. Lista de Atividades\n");
+        printf("5. Voltar ao Menu Anterior\n");
+        printf("\nEscolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao){
+            case 1:
+                system("cls");
+                cadastrarAtividade();
+                _getch();
+                break;
+            case 2:
+                system("cls");
+                editarAtividade();
+                _getch();
+                break;
+            case 3:
+                system("cls");
+                excluirAtividade();
+                _getch();
+                break;
+            case 4:
+                system("cls");
+                listarAtividades();
+                printf("Pressione qualquer tecla para voltar...");
+                _getch();
+                break;
+            case 5:
+                printf("Voltando ao menu principal...\n");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+                _getch();
+        }
+
+    }while(opcao != 5);
 }

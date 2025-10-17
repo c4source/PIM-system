@@ -14,17 +14,17 @@ except (FileNotFoundError, json.JSONDecodeError):
     print("Erro: arquivo nao encontrado ou vazio.")
     sys.exit(1)
 
-id_alvo = input("Digite o ID do administrador que deseja excluir: ").strip()
+id_alvo = input("Digite o ID da aula que deseja excluir: ").strip()
 
-# encontra indice do administrador
+# encontra indice da aula
 indice = next((i for i, a in enumerate(dados) if str(a.get("id")) == id_alvo), None)
 
 if indice is None:
-    print("Administrador nao encontrado.")
+    print("aula nao encontrada.")
     sys.exit(1)
 
-administrador = dados[indice]
-confirm = input(f"Confirmar exclusao do administrador {administrador['nome']} (ID {administrador['id']})? (s/n): ").strip().lower()
+aula = dados[indice]
+confirm = input(f"Confirmar exclusao da aula ID {aula['id']} referente a turma: {aula['turmaId']})? (s/n): ").strip().lower()
 if confirm != "s":
     print("Exclusao cancelada.")
     sys.exit(0)
@@ -34,4 +34,4 @@ dados.pop(indice)
 with open(arquivo_json, "w") as f:
     json.dump(dados, f, indent=4)
 
-print("Administrador excluido com sucesso!")
+print("aula excluida com sucesso!")

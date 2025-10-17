@@ -12,3 +12,11 @@ void listarAtividades() {
 void cadastrarAtividade() {
     systemPython("scripts/write_json_atividades.py", "data/atividades.json");
 }
+
+void editarAtividade() {
+    systemPython("scripts/edit_json_atividades.py", "data/atividades.json");
+}
+
+void excluirAtividade() {
+    systemPython("scripts/delete_json_atividades.py", "data/atividades.json");
+}

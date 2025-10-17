@@ -12,3 +12,12 @@ void listarTurmas() {
 void cadastrarTurma() {
     systemPython("scripts/write_json_turmas.py", "data/turmas.json");
 }
+
+void editarTurma() {
+    systemPython("scripts/edit_json_turmas.py", "data/turmas.json");
+}
+
+void excluirTurma() {
+    systemPython("scripts/delete_json_turmas.py", "data/turmas.json");
+}
+

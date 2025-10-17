@@ -12,3 +12,12 @@ void listarAulas() {
 void cadastrarAula() {
     systemPython("scripts/write_json_aulas.py", "data/aulas.json");
 }
+
+void editarAula() {
+    systemPython("scripts/edit_json_aulas.py", "data/aulas.json");
+}
+
+void excluirAula() {
+    systemPython("scripts/delete_json_aulas.py", "data/aulas.json");
+}
+

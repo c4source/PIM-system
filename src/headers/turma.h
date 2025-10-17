@@ -10,5 +10,7 @@ typedef struct {
 
 void listarTurmas();
 void cadastrarTurma();
+void editarTurma();
+void excluirTurma();
 
 #endif

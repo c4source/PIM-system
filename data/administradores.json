@@ -1,0 +1,9 @@
+[
+    {
+        "id": 1,
+        "nome": "Root",
+        "cargo": "Root",
+        "usuario": "admin",
+        "senha": "admin"
+    }
+]

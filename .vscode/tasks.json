@@ -4,7 +4,7 @@
         {
             "label": "Compilar C",
             "type": "shell",
-            "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
+            "command": "C:\\mingw64\\bin\\gcc.exe",
             "args": [
                 "src/main.c",
                 "src/aluno.c",

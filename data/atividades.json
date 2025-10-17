@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "id": "1",
+        "titulo": "Jogo da velha",
+        "descricao": "Desenvolver uma aplicacao de jogo da velha",
+        "aulaId": "1",
+        "nota": "10"
+    }
+]

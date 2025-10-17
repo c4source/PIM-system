@@ -21,7 +21,8 @@ nova = {}
 nova["id"] = input("Digite o ID da atividade: ")
 nova["titulo"] = input("Digite o titulo da atividade: ")
 nova["descricao"] = input("Digite a descricao: ")
-nova["aula"] = input("Digite a aula associada: ")
+nova["aulaId"] = input("Digite o id da aula associada: ")
+nova["nota"] = input("Digite a nota para esta atividade: ")
 
 dados.append(nova)
 

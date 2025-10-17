@@ -14,10 +14,10 @@ void cadastrarTurma() {
 }
 
 void editarTurma() {
-    systemPython("scripts/edit_json_turmas.py", "data/turmas.json");
+    systemPython("scripts/edit_json_turma.py", "data/turmas.json");
 }
 
 void excluirTurma() {
-    systemPython("scripts/delete_json_turmas.py", "data/turmas.json");
+    systemPython("scripts/delete_json_turma.py", "data/turmas.json");
 }
 

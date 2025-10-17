@@ -14,10 +14,10 @@ void cadastrarAula() {
 }
 
 void editarAula() {
-    systemPython("scripts/edit_json_aulas.py", "data/aulas.json");
+    systemPython("scripts/edit_json_aula.py", "data/aulas.json");
 }
 
 void excluirAula() {
-    systemPython("scripts/delete_json_aulas.py", "data/aulas.json");
+    systemPython("scripts/delete_json_aula.py", "data/aulas.json");
 }
 

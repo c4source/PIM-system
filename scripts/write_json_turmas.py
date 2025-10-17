@@ -20,7 +20,6 @@ except json.JSONDecodeError:
 nova = {}
 nova["id"] = input("Digite o ID da turma: ")
 nova["nome"] = input("Digite o nome da turma: ")
-nova["periodo"] = input("Digite o periodo da turma: ")
 
 dados.append(nova)
 

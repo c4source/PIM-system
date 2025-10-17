@@ -14,9 +14,9 @@ void cadastrarAtividade() {
 }
 
 void editarAtividade() {
-    systemPython("scripts/edit_json_atividades.py", "data/atividades.json");
+    systemPython("scripts/edit_json_atividade.py", "data/atividades.json");
 }
 
 void excluirAtividade() {
-    systemPython("scripts/delete_json_atividades.py", "data/atividades.json");
+    systemPython("scripts/delete_json_atividade.py", "data/atividades.json");
 }

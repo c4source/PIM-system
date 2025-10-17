@@ -19,9 +19,8 @@ except json.JSONDecodeError:
 # Solicita dados ao usuario
 nova = {}
 nova["id"] = input("Digite o ID da aula: ")
-nova["nome"] = input("Digite o nome da aula: ")
-nova["professor"] = input("Digite o nome do professor: ")
-nova["turma"] = input("Digite a turma associada: ")
+nova["professorId"] = input("Digite o id do professor: ")
+nova["tema"] = input("Digite o tema da aula: ")
 
 dados.append(nova)
 

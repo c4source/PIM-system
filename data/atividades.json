@@ -3,7 +3,16 @@
         "id": "1",
         "titulo": "Jogo da velha",
         "descricao": "Desenvolver uma aplicacao de jogo da velha",
-        "aulaId": "1",
-        "nota": "10"
+        "aulaId": 1,
+        "nota": 10.0,
+        "turmaId": 1
+    },
+    {
+        "id": 4,
+        "titulo": "Testando agora",
+        "descricao": "teste serio",
+        "turmaId": 1,
+        "aulaId": 1,
+        "nota": 10.0
     }
 ]

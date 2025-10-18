@@ -21,3 +21,7 @@ void excluirTurma() {
     systemPython("scripts/delete_json_turma.py", "data/turmas.json");
 }
 
+void relatorioTurma(){
+    systemPython("scripts/relatorio_turma.py", "data/turmas.json");
+}
+

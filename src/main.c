@@ -130,7 +130,8 @@ void menuProfessores(){
         printf("2. Editar Professor\n");
         printf("3. Excluir Professor\n");
         printf("4. Lista de Professores\n");
-        printf("5. Voltar ao Menu Anterior\n");
+        printf("5. Relatorio de Disciplinas\n");
+        printf("6. Voltar ao Menu Anterior\n");
         printf("\nEscolha uma opcao: ");
 
         scanf("%d", &opcao);
@@ -159,13 +160,19 @@ void menuProfessores(){
             _getch();
             break;
         case 5:
+            system("cls");
+            relatorioDisciplinasdoProfessor();
+            printf("Pressione qualquer tecla para Fechar a listagem de professores.");
+            _getch();
+            break;
+        case 6:
             printf("Voltando ao menu Principal...");
             break;
         default:
             break;
         }
 
-        }while(opcao != 5 );
+        }while(opcao != 6 );
 
 }
 
@@ -229,7 +236,8 @@ void menuTurmas(){
         printf("2. Editar Turma\n");
         printf("3. Excluir Turma\n");
         printf("4. Lista de Turmas\n");
-        printf("5. Voltar ao Menu Anterior\n");
+        printf("5. Relatorio de Alunos por Turma\n");
+        printf("6. Voltar ao Menu Anterior\n");
         printf("\nEscolha uma opcao: ");
         scanf("%d", &opcao);
 
@@ -256,6 +264,12 @@ void menuTurmas(){
                 _getch();
                 break;
             case 5:
+                system("cls");
+                relatorioTurma();
+                printf("Pressione qualquer tecla para voltar...");
+                _getch();
+                break;
+            case 6:
                 printf("Voltando ao menu principal...\n");
                 break;
             default:
@@ -263,7 +277,7 @@ void menuTurmas(){
                 _getch();
         }
 
-    }while(opcao != 5);
+    }while(opcao != 6);
 }
 
 void menuAulas(){

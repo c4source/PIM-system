@@ -33,12 +33,18 @@ print(f"Editando Atividade ID {atividade['id']} - {atividade['titulo']}")
 
 novo_titulo = input("Novo titulo (Enter para manter): ").strip()
 nova_descricao = input("Nova Descricao (Enter para manter): ").strip()
+novo_turmaId = int(input("Novo Id da turma (Enter p/ manter): ").strip())
+nova_aulaId = int(input("Novo Id da aula (Enter p/ manter): ").strip())
 nova_nota = input("Nova nota (Enter p/ manter): ").strip()
 
 if novo_titulo:
     atividade["titulo"] = novo_titulo
 if nova_descricao:
     atividade["descricao"] = nova_descricao
+if novo_turmaId:
+    atividade["turmaId"] = int(novo_turmaId) 
+if nova_aulaId:
+    atividade["aulaId"] = int(nova_aulaId) 
 if nova_nota:
     atividade["nota"] = float(nova_nota)
 

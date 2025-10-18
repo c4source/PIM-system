@@ -28,7 +28,7 @@ if professor is None:
     print("Professor nao encontrado.")
     sys.exit(1)
 
-print(f"Editando professor ID {professor['id']} - {professor['nome']} (matricula: {professor['matricula']})")
+print(f"Editando professor ID {professor['id']} - {professor['nome']}")
 
 novo_nome = input("Novo nome (Enter para manter): ").strip()
 novo_email = input("Novo e-mail (Enter para manter): ").strip()

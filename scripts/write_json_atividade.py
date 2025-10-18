@@ -28,6 +28,7 @@ nova = {}
 nova["id"] = novo_id
 nova["titulo"] = input("Digite o titulo da atividade: ")
 nova["descricao"] = input("Digite a descricao: ")
+nova["turmaId"] = int(input("ID da Turma: ").strip())
 nova["aulaId"] = int(input("ID da aula: ").strip())
 nota_txt = input("Nota (ex: 8.5): ").strip()
 nova["nota"] = float(nota_txt) if nota_txt else 0.0

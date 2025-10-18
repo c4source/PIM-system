@@ -12,5 +12,6 @@ void listarProfessores();
 void cadastrarProfessor();
 void editarProfessor();
 void excluirProfessor();
+void relatorioDisciplinasdoProfessor();
 
 #endif

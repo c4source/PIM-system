@@ -15,8 +15,8 @@ try:
             print("Nenhuma atividade cadastrada.")
         for item in dados:
             print(f"ID: {item.get('id')}")
-            print(f"Título: {item.get('titulo')}")
-            print(f"Descrição: {item.get('descricao')}")
+            print(f"Titulo: {item.get('titulo')}")
+            print(f"Descricao: {item.get('descricao')}")
             print(f"Turma ID: {item.get('turmaId')}")
             print(f"Aula ID: {item.get('aulaId')}")
             print(f"Nota: {item.get('nota')}")

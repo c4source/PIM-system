@@ -27,6 +27,7 @@ print("========== CADASTRO DE AULA ==========\n")
 nova = {}
 nova["id"] = novo_id
 nova["professorId"] = int(input("ID do professor: ").strip())
+nova["turmaId"] = int(input("ID da turma: ").strip())
 nova["tema"] = input("Digite o tema da aula: ")
 
 dados.append(nova)

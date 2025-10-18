@@ -30,12 +30,15 @@ if aluno is None:
 print(f"Editando aluno ID {aluno['id']} - {aluno['nome']} (matricula: {aluno['matricula']})")
 
 novo_nome = input("Novo nome (Enter para manter): ").strip()
-nova_matricula = input("Nova matricula (Enter para manter): ").strip()
+novo_email = input("Novo e-mail (Enter para manter): ").strip()
+nova_senha = input("Novo senha (Enter para manter): ").strip()
 
 if novo_nome:
     aluno["nome"] = novo_nome
-if nova_matricula:
-    aluno["matricula"] = nova_matricula
+if novo_email:
+    aluno["email"] = novo_email
+if nova_senha:
+    aluno["senha"] = nova_senha
 
 # salva alteracoes
 with open(arquivo_json, "w") as f:

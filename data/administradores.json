@@ -2,8 +2,7 @@
     {
         "id": 1,
         "nome": "Root",
-        "cargo": "Root",
-        "usuario": "admin",
+        "email": "root@root.com",
         "senha": "admin"
     }
 ]

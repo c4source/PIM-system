@@ -4,7 +4,8 @@
 typedef struct {
     int id;
     char nome[100];
-    char matricula[20];
+    char email[50];
+    char senha[20];
 } Aluno;
 
 void listarAlunos();

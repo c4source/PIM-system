@@ -26,7 +26,8 @@ else:
 novo = {}
 novo["id"] = novo_id
 novo["nome"] = input("Digite o nome: ")
-novo["matricula"] = input("Digite a matricula: ")
+novo["email"] = input("Digite seu e-mail: ")
+novo["senha"] = input("Crie uma senha: ")
 
 dados.append(novo)
 

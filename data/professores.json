@@ -1,12 +1,8 @@
 [
     {
-        "id": "1",
+        "id": 1,
         "nome": "Alberto",
-        "matricula": "156116"
-    },
-    {
-        "id": 2,
-        "nome": "Marliane",
-        "matricula": "5161568"
+        "email": "alberto@gmail.com",
+        "senha": "alberto123"
     }
 ]

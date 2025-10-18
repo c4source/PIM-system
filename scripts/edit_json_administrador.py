@@ -30,13 +30,13 @@ if administrador is None:
 print(f"Editando Administrador ID {administrador['id']} - {administrador['nome']} ")
 
 novo_nome = input("Novo nome (Enter para manter): ").strip()
-novo_usuario = input("Novo usuario (Enter para manter): ").strip()
-nova_senha = input("Nova senha: (Enter para manter):").strip()
+novo_email = input("Novo e-mail (Enter para manter): ").strip()
+nova_senha = input("Novo senha (Enter para manter): ").strip()
 
 if novo_nome:
     administrador["nome"] = novo_nome
-if novo_usuario:
-    administrador["usuario"] = novo_usuario
+if novo_email:
+    administrador["email"] = novo_email
 if nova_senha:
     administrador["senha"] = nova_senha
 

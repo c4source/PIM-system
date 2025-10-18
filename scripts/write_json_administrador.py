@@ -26,8 +26,7 @@ else:
 novo = {}
 novo["id"] = novo_id
 novo["nome"] = input("Digite o nome: ")
-novo["cargo"] = input("Digite o cargo: ")
-novo["usuario"] = input("Digite o seu usuario: ")
+novo["email"] = input("Digite seu e-mail: ")
 novo["senha"] = input("Crie uma senha: ")
 
 

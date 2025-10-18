@@ -72,4 +72,23 @@ void systemPython(const char *script, const char *param) {
     snprintf(comando, sizeof(comando), "python \"%s\" \"%s\"", caminhoScript, caminhoParam);
 
     system(comando);
+
+}
+
+// Limpa a tela do console
+void limparTela(void){
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+
+}
+// Pausa a execução até que o usuário pressione uma tecla
+void pausar(void){
+    printf("\nPressione ENTER para continuar...");
+    fflush(stdout);
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF); //limpar lixo
+
 }

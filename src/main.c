@@ -7,6 +7,8 @@
 #include "headers/atividade.h"
 #include "headers/professor.h"
 #include "headers/administrador.h"
+#include "headers/login.h"
+#include "headers/utils.h"
 
 void menuPrincipal();
 void menuAlunos();
@@ -16,8 +18,28 @@ void menuAtividades();
 void menuProfessores();
 void menuAdministrador();
 
-int main() {
-    menuPrincipal();
+int main(void) {
+    // 1) Faz o login (Python valida e retorna 1/2/3 ou -1)
+    int role = realizarLogin();
+    if (role == SAIR_SISTEMA) return 0;
+
+    // 2) Redireciona para o menu já existente
+    switch (role) {
+        case ADMIN_ROLE:
+            menuAdministrador();
+            break;
+        case PROFESSOR_ROLE:
+            menuProfessores();
+            break;
+        case ALUNO_ROLE:
+            menuAlunos();
+            break;
+        default:
+            printf("Perfil inválido.\n");
+            break;
+    }
+
+    // 3) Encerra quando o menu retornar (comportamento igual ao atual)
     return 0;
 }
 

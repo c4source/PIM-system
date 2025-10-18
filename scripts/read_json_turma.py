@@ -8,15 +8,14 @@ if len(sys.argv) < 2:
 arquivo_json = sys.argv[1]
 
 try:
-    print("========== LISTA DE ALUNOS MATRICULADOS ==========\n")
+    print("========== LISTA DE TURMAS ==========\n")
     with open(arquivo_json, "r", encoding="utf-8") as f:
         dados = json.load(f)
         if not dados:
-            print("Nenhum aluno cadastrado.")
+            print("Nenhuma turma cadastrada.")
         for item in dados:
             print(f"ID: {item.get('id')}")
-            print(f"Nome: {item.get('nome')}")
-            print(f"E-mail: {item.get('email')}")
+            print(f"Nome da turma: {item.get('nome')}")
             print("-" * 40)
 except FileNotFoundError:
     print("Arquivo não encontrado:", arquivo_json)

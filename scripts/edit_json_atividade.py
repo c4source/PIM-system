@@ -14,6 +14,8 @@ except (FileNotFoundError, json.JSONDecodeError):
     print("Erro: arquivo nao encontrado ou vazio.")
     sys.exit(1)
 
+print("========== EDIÇÃO DE ATIVIDADE ==========\n")
+
 id_alvo = input("Digite o ID da atividade que deseja editar: ").strip()
 
 # procura atividade pelo id
@@ -31,17 +33,18 @@ print(f"Editando Atividade ID {atividade['id']} - {atividade['titulo']}")
 
 novo_titulo = input("Novo titulo (Enter para manter): ").strip()
 nova_descricao = input("Nova Descricao (Enter para manter): ").strip()
-nova_nota = input("Nova nota (Enter para manter): ").strip()
+nova_nota = input("Nova nota (Enter p/ manter): ").strip()
 
 if novo_titulo:
     atividade["titulo"] = novo_titulo
 if nova_descricao:
     atividade["descricao"] = nova_descricao
 if nova_nota:
-    atividade["nota"] = nova_nota
+    atividade["nota"] = float(nova_nota)
+
 
 # salva alteracoes
 with open(arquivo_json, "w") as f:
     json.dump(dados, f, indent=4)
 
-print("Atividade atualizada com sucesso!")
+print("Registro atualizado com sucesso!")

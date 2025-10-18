@@ -5,12 +5,12 @@
 
 void listarTurmas() {
     char output[2048];
-    executarPython("scripts/read_json_turmas.py", "data/turmas.json", output, sizeof(output));
+    executarPython("scripts/read_json_turma.py", "data/turmas.json", output, sizeof(output));
     printf("%s\n", output);
 }
 
 void cadastrarTurma() {
-    systemPython("scripts/write_json_turmas.py", "data/turmas.json");
+    systemPython("scripts/write_json_turma.py", "data/turmas.json");
 }
 
 void editarTurma() {

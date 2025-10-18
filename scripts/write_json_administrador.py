@@ -14,7 +14,7 @@ try:
 except (FileNotFoundError, json.JSONDecodeError):
     dados = []
 
-print("========== CADASTRO DE ADMINISTRADOR ==========\n")
+
 
 # Gera automaticamente o proximo ID
 if dados:
@@ -22,6 +22,7 @@ if dados:
 else:
     novo_id = 1
 
+print("========== CADASTRO DE ADMINISTRADOR ==========\n")
 # Solicita dados ao usuario
 novo = {}
 novo["id"] = novo_id
@@ -36,4 +37,4 @@ dados.append(novo)
 with open(arquivo_json, "w") as f:
     json.dump(dados, f, indent=4)
 
-print(f"\nAdministrador cadastrado com sucesso! ID gerado automaticamente: {novo_id}")
+print(f"\nCadastro realizado com sucesso!")

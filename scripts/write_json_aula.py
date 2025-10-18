@@ -16,13 +16,18 @@ except FileNotFoundError:
 except json.JSONDecodeError:
     dados = []
 
+# Gera automaticamente o proximo ID
+if dados:
+    novo_id = max(int(aula.get("id", 0)) for aula in dados) + 1
+else:
+    novo_id = 1
+
+print("========== CADASTRO DE AULA ==========\n")
 # Solicita dados ao usuario
 nova = {}
-nova["id"] = input("Digite o ID da atividade: ")
-nova["titulo"] = input("Digite o titulo da atividade: ")
-nova["descricao"] = input("Digite a descricao: ")
-nova["aulaId"] = input("Digite o id da aula associada: ")
-nova["nota"] = input("Digite a nota para esta atividade: ")
+nova["id"] = novo_id
+nova["professorId"] = int(input("ID do professor: ").strip())
+nova["tema"] = input("Digite o tema da aula: ")
 
 dados.append(nova)
 
@@ -30,4 +35,4 @@ dados.append(nova)
 with open(arquivo_json, "w") as f:
     json.dump(dados, f, indent=4)
 
-print("Atividade cadastrada com sucesso!")
+print("Cadastro realizado com sucesso!")

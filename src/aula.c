@@ -5,12 +5,12 @@
 
 void listarAulas() {
     char output[2048];
-    executarPython("scripts/read_json_aulas.py", "data/aulas.json", output, sizeof(output));
+    executarPython("scripts/read_json_aula.py", "data/aulas.json", output, sizeof(output));
     printf("%s\n", output);
 }
 
 void cadastrarAula() {
-    systemPython("scripts/write_json_aulas.py", "data/aulas.json");
+    systemPython("scripts/write_json_aula.py", "data/aulas.json");
 }
 
 void editarAula() {

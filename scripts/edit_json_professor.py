@@ -14,6 +14,7 @@ except (FileNotFoundError, json.JSONDecodeError):
     print("Erro: arquivo nao encontrado ou vazio.")
     sys.exit(1)
 
+print("========== EDIÇÃO DE PROFESSOR ==========\n")
 id_alvo = input("Digite o ID do professor que deseja editar: ").strip()
 
 # procura professor pelo id
@@ -44,4 +45,4 @@ if nova_senha:
 with open(arquivo_json, "w") as f:
     json.dump(dados, f, indent=4)
 
-print("Professor atualizado com sucesso!")
+print("Registro atualizado com sucesso!")

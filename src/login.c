@@ -1,21 +1,18 @@
-// src/login.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "headers/login.h"
 #include "headers/utils.h"
 
+char usuarioNome[128]; // variável global para armazenar o nome do usuário logado
 
 // no seu Windows o comando é "python"
 static const char* py_cmd(void) { return "python"; }
 
-// executa scripts/validar_login.py "<email>" "<senha>" e lê "0/1/2/3" do stdout
+// executa scripts/validar_login.py "<email>" "<senha>" e lê "0|Nome"
 static int validar_com_python(const char* email, const char* senha) {
     char cmd[512];
-    // aspas duplas permitem espaços nos argumentos
-    snprintf(cmd, sizeof(cmd),
-             "%s scripts/validar_login.py \"%s\" \"%s\"",
-             py_cmd(), email, senha);
+    snprintf(cmd, sizeof(cmd), "%s scripts/validar_login.py \"%s\" \"%s\"", py_cmd(), email, senha);
 
 #ifdef _WIN32
     FILE* fp = _popen(cmd, "r");
@@ -24,7 +21,7 @@ static int validar_com_python(const char* email, const char* senha) {
 #endif
     if (!fp) return 0;
 
-    char out[32] = {0};
+    char out[256] = {0};
     if (!fgets(out, sizeof(out), fp)) {
 #ifdef _WIN32
         _pclose(fp);
@@ -40,11 +37,23 @@ static int validar_com_python(const char* email, const char* senha) {
     pclose(fp);
 #endif
 
-    return atoi(out); // converte "0/1/2/3\n" para int
+    // Divide a string recebida "2|Nome do Usuário"
+    int role = 0;
+    char *sep = strchr(out, '|');
+    if (sep) {
+        *sep = '\0'; // separa a parte numérica
+        role = atoi(out);
+        strncpy(usuarioNome, sep + 1, sizeof(usuarioNome));
+        usuarioNome[strcspn(usuarioNome, "\n")] = '\0'; // remove quebra de linha
+    } else {
+        role = atoi(out);
+        strcpy(usuarioNome, "Usuário");
+    }
+
+    return role; // retorna 1/2/3/0
 }
 
 // tela de login + integração com python
-// retorna: 1=admin, 2=professor, 3=aluno, -1=sair
 int realizarLogin(void) {
     char email[64];
     char senha[64];
@@ -67,7 +76,7 @@ int realizarLogin(void) {
 
         int role = validar_com_python(email, senha); // 0/1/2/3
         if (role == ADMIN_ROLE || role == PROFESSOR_ROLE || role == ALUNO_ROLE) {
-            printf("\nLogin bem-sucedido! Bem-vindo(a), %s.\n", email);
+            printf("\nLogin bem-sucedido! Bem-vindo(a), %s.\n", usuarioNome);
             pausar();
             return role;
         }

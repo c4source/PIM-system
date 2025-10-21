@@ -73,3 +73,16 @@ void systemPython(const char *script, const char *param) {
 
     system(comando);
 }
+
+void limparTela() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
+void pausar() {
+    printf("\nPressione Enter para continuar...");
+    getchar();
+}

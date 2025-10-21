@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "alunoId": 1,
+        "atividadeId": 1,
+        "nota": 8.5,
+        "status": "corrigida"
+    },
+    {
+        "id": 2,
+        "alunoId": 2,
+        "atividadeId": 1,
+        "nota": 10.0,
+        "status": "corrigida"
+    }
+]

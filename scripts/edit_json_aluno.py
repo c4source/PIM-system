@@ -1,5 +1,19 @@
 import json
 import sys
+import hashlib
+import getpass
+
+def gerar_hash_senha(senha):
+    """ 
+    Gera um hash SHA-256 para a senha
+    
+    Args:
+        senha (str): A senha em texto puro do aluno.
+    
+    Returns: 
+        str: O hash SHA-256 da senha     
+    """
+    return hashlib.sha256(senha.encode()).hexdigest()
 
 if len(sys.argv) < 2:
     print("Erro: arquivo JSON nao especificado")
@@ -31,14 +45,14 @@ print(f"Editando aluno ID {aluno['id']} - {aluno['nome']} (matricula: {aluno['ma
 
 novo_nome = input("Novo nome (Enter para manter): ").strip()
 novo_email = input("Novo e-mail (Enter para manter): ").strip()
-nova_senha = input("Novo senha (Enter para manter): ").strip()
+nova_senha = getpass.getpass("Nova senha (Enter para manter): ").strip()
 
 if novo_nome:
     aluno["nome"] = novo_nome
 if novo_email:
     aluno["email"] = novo_email
 if nova_senha:
-    aluno["senha"] = nova_senha
+    aluno["senha"] = gerar_hash_senha(nova_senha)
 
 # salva alteracoes
 with open(arquivo_json, "w") as f:

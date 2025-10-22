@@ -1,5 +1,5 @@
 # scripts/validar_login.py
-import sys, json, os
+import sys, json, os, hashlib, getpass 
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.normpath(os.path.join(BASE, "..", "data"))
@@ -21,11 +21,38 @@ def load(path):
         return []
 
 
+def gerar_hash_senha(senha):
+    """ 
+    Gera um hash SHA-256 para a senha
+    
+    Args:
+        senha (str): A senha em texto puro do aluno.
+    
+    Returns: 
+        str: O hash SHA-256 da senha     
+    
+    """
+    return hashlib.sha256(senha.encode()).hexdigest()
+
+
+
 def same_email(a, b):
     return (a or "").strip().lower() == (b or "").strip().lower()
 
-def same_senha(a, b):
-    return (a or "").strip() == (b or "").strip()
+def same_senha(senha_armazenada, senha_digitada):
+    """
+    Compara o hash da senha digitada com o hash armazenado.
+
+    Args:
+        senha_armazenada (str): O hash da senha armazenada.
+        senha_digitada (str): A senha digitada em texto puro.
+
+    Returns:
+        bool: True se os hashes concidierem, e False caso contrário. 
+
+    """
+    return senha_armazenada == gerar_hash_senha(senha_digitada)
+    
 
 
 def find_user(email, senha):

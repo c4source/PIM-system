@@ -14,4 +14,8 @@
 //  1=admin, 2=professor, 3=aluno, -1=sair
 int realizarLogin(void);
 
+extern int tipoUsuarioAtual;
+extern int idUsuarioAtual;
+extern char usuarioNome[128];
+
 #endif // LOGIN_H

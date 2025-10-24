@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <string.h>
 
 #include "headers/aluno.h"
 #include "headers/turma.h"
@@ -11,8 +12,11 @@
 #include "headers/notas.h"
 #include "headers/login.h"
 
-// Protótipos dos menus
-void menuPrincipal();
+void menuPrincipalAdmin();
+void menuPrincipalProfessor();
+void menuPrincipalAluno();
+
+
 void menuAlunos();
 void menuTurmas();
 void menuAulas();
@@ -29,16 +33,16 @@ int main() {
         return 0;
     }
 
-    // Direciona para o menu apropriado com base no tipo de usuário
+    // Direciona para o menu conforme o tipo de usuário logado
     switch (tipoUsuario) {
         case ADMIN_ROLE:
-            menuAdministrador();
+            menuPrincipalAdmin();
             break;
         case PROFESSOR_ROLE:
-            menuProfessores();
+            menuPrincipalProfessor();
             break;
         case ALUNO_ROLE:
-            menuAlunos();
+            menuPrincipalAluno();
             break;
         default:
             printf("Erro: tipo de usuário inválido.\n");
@@ -48,57 +52,120 @@ int main() {
     return 0;
 }
 
-void menuPrincipal(){
+// ===============================================================
+// MENUS PRINCIPAIS PERSONALIZADOS POR TIPO DE USUÁRIO
+// ===============================================================
+
+// 🧑‍💼 ADMINISTRADOR — acesso total
+void menuPrincipalAdmin() {
     int opcao;
-
-    do{
+    do {
         system("cls");
-
-        printf("========== MENU PRINCIPAL ==========\n");
+        printf("========== MENU ADMINISTRADOR ==========\n");
+        printf("Usuario logado: %s\n\n", usuarioNome);
         printf("1. Menu de Alunos\n");
         printf("2. Menu de Professores\n");
         printf("3. Menu de Atividades\n");
         printf("4. Menu de Notas\n");
         printf("5. Menu de Aulas\n");
         printf("6. Menu de Turmas\n");
-        printf("7. Menu do Administrador\n");
-        printf("8. Encerrar o Programa\n");
+        printf("7. Menu de Administrador\n");
+        printf("8. Logout\n");
         printf("\nEscolha uma opcao: ");
         scanf("%d", &opcao);
 
-        switch (opcao)
-        {
-        case 1:
-            menuAlunos();
-            break;
-        case 2:
-            menuProfessores();
-            break;
-        case 3:
-            menuAtividades();
-            break;
-        case 4:
-            menuNotas();
-            break;
-        case 5:
-            menuAulas();
-            break;
-        case 6:
-            menuTurmas();
-            break;
-        case 7:
-            menuAdministrador();
-            break;
-        case 8:
-            printf("Saindo...");
-            break;
-        default:
-            printf("Opcao invalida!\n");
-            _getch();
+        switch (opcao) {
+            case 1: menuAlunos(); break;
+            case 2: menuProfessores(); break;
+            case 3: menuAtividades(); break;
+            case 4: menuNotas(); break;
+            case 5: menuAulas(); break;
+            case 6: menuTurmas(); break;
+            case 7: menuAdministrador(); break;
+            case 8:
+                tipoUsuarioAtual = 0;
+                idUsuarioAtual = 0;
+                strcpy(usuarioNome, "");
+                printf("\nFazendo logout...\n");
+                _getch();
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF) {} // limpa buffer
+                main(); // volta pro login
+                return;
+            default: printf("Opcao invalida!\n"); _getch();
         }
-
-    }while(opcao != 8);
+    } while (opcao != 8);
 }
+
+void menuPrincipalProfessor() {
+    int opcao;
+    do {
+        system("cls");
+        printf("========== MENU PROFESSOR ==========\n");
+        printf("Usuário logado: %s\n\n", usuarioNome);
+        printf("1. Minhas Turmas\n");
+        printf("2. Minhas Aulas\n");
+        printf("3. Minhas Atividades\n");
+        printf("4. Lançar/Editar Notas\n");
+        printf("5. Logout\n");
+        printf("\nEscolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1: menuTurmas(); break;
+            case 2: menuAulas(); break;
+            case 3: menuAtividades(); break;
+            case 4: menuNotas(); break;
+            case 5:
+                tipoUsuarioAtual = 0;
+                idUsuarioAtual = 0;
+                strcpy(usuarioNome, "");
+                printf("\nFazendo logout...\n");
+                _getch();
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF) {} // limpa buffer
+                main(); // volta pro login
+                return;
+            default:
+                printf("Opção inválida!\n"); _getch();
+        }
+    } while (opcao != 5);
+}
+
+
+// 👨‍🎓 ALUNO — pode ver aulas, atividades e suas notas
+void menuPrincipalAluno() {
+    int opcao;
+    do {
+        system("cls");
+        printf("========== MENU ALUNO ==========\n");
+        printf("Usuario logado: %s\n\n", usuarioNome);
+        printf("1. Ver Aulas\n");
+        printf("2. Ver Atividades\n");
+        printf("3. Consultar Minhas Notas\n");
+        printf("4. Logout\n");
+        printf("\nEscolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1: menuAulas(); break;
+            case 2: menuAtividades(); break;
+            case 3: menuNotas(); break;
+            case 4:
+                tipoUsuarioAtual = 0;
+                idUsuarioAtual = 0;
+                strcpy(usuarioNome, "");
+                printf("\nFazendo logout...\n");
+                _getch();
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF) {} // limpa buffer
+                main(); // volta pro login
+                return;
+            default: printf("Opcao invalida!\n"); _getch();
+        }
+    } while (opcao != 4);
+}
+
 
 void menuAlunos(){
     int opcao;
@@ -303,97 +370,148 @@ void menuTurmas(){
 
 void menuAulas(){
     int opcao;
-
     do{
         system("cls");
         printf("========== MENU DE AULAS ==========\n");
-        printf("1. Cadastrar Aula\n");
-        printf("2. Editar Aula\n");
-        printf("3. Excluir Aula\n");
-        printf("4. Lista de Aulas\n");
-        printf("5. Voltar ao Menu Anterior\n");
-        printf("\nEscolha uma opcao: ");
-        scanf("%d", &opcao);
+        printf("Usuário logado: %s\n\n", usuarioNome);
 
-        switch (opcao){
-            case 1:
-                system("cls");
-                cadastrarAula();
-                _getch();
-                break;
-            case 2:
-                system("cls");
-                editarAula();
-                _getch();
-                break;
-            case 3:
-                system("cls");
-                excluirAula();
-                _getch();
-                break;
-            case 4:
-                system("cls");
-                listarAulas();
-                printf("Pressione qualquer tecla para voltar...");
-                _getch();
-                break;
-            case 5:
-                printf("Voltando ao menu principal...\n");
-                break;
-            default:
-                printf("Opcao invalida!\n");
-                _getch();
+        if (tipoUsuarioAtual == ALUNO_ROLE) {
+            printf("1. Listar Aulas\n");
+            printf("2. Voltar ao Menu Anterior\n");
+            printf("\nEscolha uma opcao: ");
+            scanf("%d", &opcao);
+
+            switch (opcao){
+                case 1:
+                    system("cls");
+                    listarAulas();
+                    printf("Pressione qualquer tecla para voltar...");
+                    _getch();
+                    break;
+                case 2:
+                    printf("Voltando ao menu anterior...\n");
+                    break;
+                default:
+                    printf("Opção inválida!\n");
+                    _getch();
+            }
+        }
+        else {
+            printf("1. Cadastrar Aula\n");
+            printf("2. Editar Aula\n");
+            printf("3. Excluir Aula\n");
+            printf("4. Listar Aulas\n");
+            printf("5. Voltar ao Menu Anterior\n");
+            printf("\nEscolha uma opcao: ");
+            scanf("%d", &opcao);
+
+            switch (opcao){
+                case 1:
+                    system("cls");
+                    cadastrarAula();
+                    _getch();
+                    break;
+                case 2:
+                    system("cls");
+                    editarAula();
+                    _getch();
+                    break;
+                case 3:
+                    system("cls");
+                    excluirAula();
+                    _getch();
+                    break;
+                case 4:
+                    system("cls");
+                    listarAulas();
+                    printf("Pressione qualquer tecla para voltar...");
+                    _getch();
+                    break;
+                case 5:
+                    printf("Voltando ao menu anterior...\n");
+                    break;
+                default:
+                    printf("Opção inválida!\n");
+                    _getch();
+            }
         }
 
-    }while(opcao != 5);
+    }while(opcao != 5 && opcao != 2);
 }
 
 void menuAtividades(){
     int opcao;
-
     do{
         system("cls");
         printf("========== MENU DE ATIVIDADES ==========\n");
-        printf("1. Cadastrar Atividade\n");
-        printf("2. Editar Atividade\n");
-        printf("3. Excluir Atividade\n");
-        printf("4. Lista de Atividades\n");
-        printf("5. Voltar ao Menu Anterior\n");
-        printf("\nEscolha uma opcao: ");
-        scanf("%d", &opcao);
+        printf("Usuário logado: %s\n\n", usuarioNome);
 
-        switch (opcao){
-            case 1:
-                system("cls");
-                cadastrarAtividade();
-                _getch();
-                break;
-            case 2:
-                system("cls");
-                editarAtividade();
-                _getch();
-                break;
-            case 3:
-                system("cls");
-                excluirAtividade();
-                _getch();
-                break;
-            case 4:
-                system("cls");
-                listarAtividades();
-                printf("Pressione qualquer tecla para voltar...");
-                _getch();
-                break;
-            case 5:
-                printf("Voltando ao menu principal...\n");
-                break;
-            default:
-                printf("Opcao invalida!\n");
-                _getch();
+        // Se for aluno, mostra só a opção de visualizar
+        if (tipoUsuarioAtual == ALUNO_ROLE) {
+            printf("1. Listar Atividades\n");
+            printf("2. Voltar ao Menu Anterior\n");
+            printf("\nEscolha uma opcao: ");
+            scanf("%d", &opcao);
+
+            switch (opcao){
+                case 1:
+                    system("cls");
+                    listarAtividades();
+                    printf("Pressione qualquer tecla para voltar...");
+                    _getch();
+                    break;
+                case 2:
+                    printf("Voltando ao menu anterior...\n");
+                    break;
+                default:
+                    printf("Opção inválida!\n");
+                    _getch();
+            }
+        }
+        else {
+            // Professor/Admin têm acesso completo
+            printf("1. Cadastrar Atividade\n");
+            printf("2. Editar Atividade\n");
+            printf("3. Excluir Atividade\n");
+            printf("4. Listar Atividades\n");
+            printf("5. Voltar ao Menu Anterior\n");
+            printf("\nEscolha uma opcao: ");
+            scanf("%d", &opcao);
+
+            switch (opcao){
+                case 1:
+                    system("cls");
+                    cadastrarAtividade();
+                    _getch();
+                    break;
+                case 2:
+                    system("cls");
+                    editarAtividade();
+                    _getch();
+                    break;
+                case 3:
+                    system("cls");
+                    excluirAtividade();
+                    _getch();
+                    break;
+                case 4:
+                    system("cls");
+                    listarAtividades();
+                    printf("Pressione qualquer tecla para voltar...");
+                    _getch();
+                    break;
+                case 5:
+                    printf("Voltando ao menu anterior...\n");
+                    break;
+                default:
+                    printf("Opção invalida!\n");
+                    _getch();
+            }
         }
 
-    }while(opcao != 5);
+    }while(opcao != 5 && opcao != 2);
 }
+
 
 void menuNotas() {
     int opcao;
@@ -401,40 +519,60 @@ void menuNotas() {
     do {
         system("cls");
         printf("========== MENU DE NOTAS ==========\n");
-        printf("1. Lancar nova nota\n");
-        printf("2. Editar nota existente\n");
-        printf("3. Consultar notas\n");
-        printf("4. Voltar ao menu principal\n");
-        printf("\nEscolha uma opcao: ");
-        scanf("%d", &opcao);
-        getchar(); // limpar buffer
+        printf("Usuario logado: %s\n\n", usuarioNome);
 
-        switch (opcao) {
-            case 1:
-                system("cls");
-                cadastrarNota();
-                _getch();
-                break;
+        if (tipoUsuarioAtual == ALUNO_ROLE) {
+            printf("1. Consultar Minhas Notas\n");
+            printf("2. Voltar ao Menu Anterior\n");
+            printf("\nEscolha uma opcao: ");
+            scanf("%d", &opcao);
 
-            case 2:
-                system("cls");
-                editarNota();
-                _getch();
-                break;
+            switch (opcao) {
+                case 1:
+                    system("cls");
+                    listarNotas(); // Aqui você pode futuramente filtrar pelo aluno logado
+                    _getch();
+                    break;
+                case 2:
+                    printf("Voltando ao menu anterior...\n");
+                    break;
+                default:
+                    printf("Opção invalida!\n");
+                    _getch();
+            }
+        } else {
+            printf("1. Lançar nova nota\n");
+            printf("2. Editar nota existente\n");
+            printf("3. Consultar notas\n");
+            printf("4. Voltar ao menu principal\n");
+            printf("\nEscolha uma opcao: ");
+            scanf("%d", &opcao);
+            getchar();
 
-            case 3:
-                system("cls");
-                listarNotas();
-                _getch();
-                break;
-
-            case 4:
-                printf("\nVoltando ao menu principal...\n");
-                break;
-            default:
-                printf("Opcao invalida!\n");
-                _getch();
+            switch (opcao) {
+                case 1:
+                    system("cls");
+                    cadastrarNota();
+                    _getch();
+                    break;
+                case 2:
+                    system("cls");
+                    editarNota();
+                    _getch();
+                    break;
+                case 3:
+                    system("cls");
+                    listarNotas();
+                    _getch();
+                    break;
+                case 4:
+                    printf("\nVoltando ao menu principal...\n");
+                    break;
+                default:
+                    printf("Opção invalida!\n");
+                    _getch();
+            }
         }
 
-    } while (opcao != 4);
+    } while (opcao != 4 && opcao != 2);
 }

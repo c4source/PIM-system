@@ -1,6 +1,22 @@
 import json
 import sys
 import os
+import hashlib
+import getpass
+
+def gerar_hash_senha(senha):
+    """ 
+    Gera um hash SHA-256 para a senha
+    
+    Args:
+        senha (str): A senha em texto puro do aluno.
+    
+    Returns: 
+        str: O hash SHA-256 da senha     
+    
+    """
+   
+    return hashlib.sha256(senha.encode()).hexdigest()
 
 if len(sys.argv) < 2:
     print("Erro: arquivo JSON não especificado")
@@ -31,10 +47,11 @@ turmas = carregar_dados(turmas_json)
 print("========== CADASTRO DE ALUNO ==========\n")
 
 novo = {}
-novo["id"] = proximo_id(alunos)
-novo["nome"] = input("Digite o nome do aluno: ").strip()
-novo["email"] = input("Digite o e-mail: ").strip()
-novo["senha"] = input("Crie uma senha: ").strip()
+novo["id"] = novo_id
+novo["nome"] = input("Digite o nome: ")
+novo["email"] = input("Digite seu e-mail: ")
+senha_plana = getpass.getpass("Crie uma senha: ")
+novo["senha"] = hashlib.sha256(senha_plana.encode()).hexdigest()
 
 # --- Seleção de turma ---
 if not turmas:

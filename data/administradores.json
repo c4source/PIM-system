@@ -4,5 +4,29 @@
         "nome": "Root",
         "email": "root@root.com",
         "senha": "admin"
+    },
+    {
+        "id": 2,
+        "nome": "gabriel",
+        "email": "gabriel232@#.com",
+        "senha": "123"
+    },
+    {
+        "id": 3,
+        "nome": "gabriel henrique",
+        "email": "gabrielgmail@.com",
+        "senha": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3"
+    },
+    {
+        "id": 4,
+        "nome": "mauro",
+        "email": "mauroluis@gmail.com",
+        "senha": "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae"
+    },
+    {
+        "id": 5,
+        "nome": "Gnombin",
+        "email": "gnombo@gmail.com",
+        "senha": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5"
     }
 ]

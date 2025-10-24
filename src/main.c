@@ -9,8 +9,9 @@
 #include "headers/atividade.h"
 #include "headers/professor.h"
 #include "headers/administrador.h"
-#include "headers/notas.h"
 #include "headers/login.h"
+#include "headers/utils.h"
+#include "headers/notas.h"
 
 void menuPrincipalAdmin();
 void menuPrincipalProfessor();
@@ -25,7 +26,8 @@ void menuProfessores();
 void menuAdministrador();
 void menuNotas();
 
-int main() {
+int main(void) {
+    // 1) Realiza o login
     int tipoUsuario = realizarLogin();
 
     if (tipoUsuario == SAIR_SISTEMA) {
@@ -33,7 +35,7 @@ int main() {
         return 0;
     }
 
-    // Direciona para o menu conforme o tipo de usuário logado
+    // 2) Direciona para o menu conforme o tipo de usuário logado
     switch (tipoUsuario) {
         case ADMIN_ROLE:
             menuPrincipalAdmin();
@@ -49,8 +51,11 @@ int main() {
             break;
     }
 
+    // 3) Fim da execução
+    printf("\nSessão finalizada.\n");
     return 0;
 }
+
 
 // ===============================================================
 // MENUS PRINCIPAIS PERSONALIZADOS POR TIPO DE USUÁRIO

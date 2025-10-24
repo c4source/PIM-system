@@ -17,5 +17,10 @@ int realizarLogin(void);
 extern int tipoUsuarioAtual;
 extern int idUsuarioAtual;
 extern char usuarioNome[128];
+void lerSenhaOculta(char *dest, int maxlen, int mostrarAsterisco);
+
+int validarCredenciais(const char *email, const char *senha);
+
+int realizarLogin(void);
 
 #endif // LOGIN_H

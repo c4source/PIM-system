@@ -1,7 +1,11 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-// Executa um script Python e captura sua saída (para leitura no terminal C)
+// --- UI helpers usados por login.c e menus ---
+void limparTela(void);
+void pausar(void);
+
+// Declaração das funções
 void executarPython(const char *script, const char *param, char *output, int size);
 
 // Executa um script Python diretamente no terminal (sem capturar saída)

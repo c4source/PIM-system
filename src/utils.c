@@ -59,6 +59,7 @@ void systemPython(const char *script, const char *param) {
     construirCaminho(caminhoScript, script);
     snprintf(comando, sizeof(comando), "%s \"%s\" %s", py_cmd(), caminhoScript, param ? param : "");
     system(comando);
+
 }
 
 // --- Constrói um caminho relativo ao projeto ---
@@ -77,6 +78,9 @@ void limparTela(void) {
 
 // --- Pausa até pressionar Enter ---
 void pausar(void) {
-    printf("\nPressione Enter para continuar...");
-    getchar();
+    printf("\nPressione ENTER para continuar...");
+    fflush(stdout);
+
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF); // limpa buffer residual
 }

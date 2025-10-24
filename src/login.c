@@ -198,3 +198,4 @@ if (role == ADMIN_ROLE || role == PROFESSOR_ROLE || role == ALUNO_ROLE) {
     printf("\nLimite de tentativas excedido. Encerrando.\n");
     pausar();
     return SAIR_SISTEMA;
+}

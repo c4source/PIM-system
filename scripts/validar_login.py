@@ -62,7 +62,7 @@ def find_user(email, senha):
             print(f"2|{u.get('id', 0)}|{u.get('nome', 'Professor')}")
             return
     for u in load(ALUNO):
-        if same_email(u.get("email"), email) and same_senha(u.get("senha'), senha):
+        if same_email(u.get("email"), email) and same_senha(u.get("senha"), senha):
             print(f"3|{u.get('id', 0)}|{u.get('nome', 'Aluno')}")
             return
     print("0|0|")  # login inválido

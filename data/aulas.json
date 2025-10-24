@@ -1,7 +1,8 @@
 [
     {
-        "id": "1",
-        "professorId": "1",
-        "tema": "Teste"
+        "id": 1,
+        "turmaId": 1,
+        "professorId": 1,
+        "tema": "Algoritmos de ordenacao"
     }
 ]

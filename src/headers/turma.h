@@ -4,13 +4,13 @@
 typedef struct {
     int id;
     char nome[50];
-    int alunos[50]; // IDs dos alunos
-    int qtdAlunos;
+    int professorId;
 } Turma;
 
 void listarTurmas();
 void cadastrarTurma();
 void editarTurma();
 void excluirTurma();
+void relatorioTurma();
 
 #endif

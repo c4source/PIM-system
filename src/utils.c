@@ -1,94 +1,86 @@
-#include "headers/utils.h"
-#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "headers/utils.h"
 
-// Constrói caminho absoluto real para o arquivo, baseado na raiz do projeto
-void construirCaminho(char *destino, const char *subcaminho) {
-    char caminhoExe[MAX_PATH];
-    GetModuleFileName(NULL, caminhoExe, MAX_PATH);
-
-    // Remove o nome do exe
-    char *p = strrchr(caminhoExe, '\\');
-    if (p) *p = '\0';
-
-    // Caminho raiz = pai da pasta build se exe estiver em build
-    char raiz[MAX_PATH];
-    strncpy(raiz, caminhoExe, MAX_PATH);
-    if (strstr(raiz, "\\build") != NULL)
-        *strstr(raiz, "\\build") = '\0';
-
-    // Corrige barras no subcaminho
-    char sub[MAX_PATH];
-    strncpy(sub, subcaminho, MAX_PATH);
-    for (int i = 0; sub[i]; i++)
-        if (sub[i] == '/') sub[i] = '\\';
-
-    // Combina raiz + subcaminho
-    char combinado[MAX_PATH];
-    snprintf(combinado, sizeof(combinado), "%s\\%s", raiz, sub);
-
-    // Converte para caminho absoluto real
-    char absoluto[MAX_PATH];
-    GetFullPathName(combinado, MAX_PATH, absoluto, NULL);
-    strncpy(destino, absoluto, MAX_PATH);
+// Define o comando Python conforme o sistema
+static const char* py_cmd(void) {
+#ifdef _WIN32
+    return "python"; // ou "python3" se for o nome no seu PATH
+#else
+    return "python3";
+#endif
 }
 
-// Executa script Python e captura saída
+// --- Executa um script Python e captura o resultado ---
 void executarPython(const char *script, const char *param, char *output, int size) {
-    char caminhoScript[MAX_PATH];
-    char caminhoParam[MAX_PATH];
+    char caminhoScript[260];
     char comando[512];
 
     construirCaminho(caminhoScript, script);
-    construirCaminho(caminhoParam, param);
-    snprintf(comando, sizeof(comando), "python \"%s\" \"%s\"", caminhoScript, caminhoParam);
 
-    FILE *pipe = _popen(comando, "r");
-    if (!pipe) {
-        snprintf(output, size, "Erro ao executar script Python.");
+    // ✅ Corrigido: agora os parâmetros não são agrupados entre aspas
+    // Exemplo final: python "scripts/read_json_aula.py" data/aulas.json 5
+    snprintf(comando, sizeof(comando), "%s \"%s\" %s", py_cmd(), caminhoScript, param ? param : "");
+
+#ifdef _WIN32
+    FILE *fp = _popen(comando, "r");
+#else
+    FILE *fp = popen(comando, "r");
+#endif
+
+    if (!fp) {
+        snprintf(output, size, "Erro ao executar comando Python.\n");
         return;
     }
 
-    char linha[256];
+    char buffer[256];
     output[0] = '\0';
-    while (fgets(linha, sizeof(linha), pipe) != NULL) {
-        if ((strlen(output) + strlen(linha)) < (size_t)size)
-            strcat(output, linha);
+
+    // Lê toda a saída do script Python
+    while (fgets(buffer, sizeof(buffer), fp)) {
+        if (strlen(output) + strlen(buffer) < (size_t)(size - 1)) {
+            strcat(output, buffer);
+        }
     }
 
-    _pclose(pipe);
+#ifdef _WIN32
+    _pclose(fp);
+#else
+    pclose(fp);
+#endif
 }
 
-// Executa script Python sem capturar saída (para cadastro)
+// --- Executa um script Python diretamente no terminal (sem capturar saída) ---
 void systemPython(const char *script, const char *param) {
-    char caminhoScript[MAX_PATH];
-    char caminhoParam[MAX_PATH];
+    char caminhoScript[260];
     char comando[512];
 
     construirCaminho(caminhoScript, script);
-    construirCaminho(caminhoParam, param);
-    snprintf(comando, sizeof(comando), "python \"%s\" \"%s\"", caminhoScript, caminhoParam);
-
+    snprintf(comando, sizeof(comando), "%s \"%s\" %s", py_cmd(), caminhoScript, param ? param : "");
     system(comando);
 
 }
 
-// Limpa a tela do console
-void limparTela(void){
-    #ifdef _WIN32
-        system("cls");
-    #else
-        system("clear");
-    #endif
-
+// --- Constrói um caminho relativo ao projeto ---
+void construirCaminho(char *destino, const char *subcaminho) {
+    snprintf(destino, 260, "%s/%s", ".", subcaminho);
 }
-// Pausa a execução até que o usuário pressione uma tecla
-void pausar(void){
+
+// --- Limpa a tela ---
+void limparTela(void) {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
+// --- Pausa até pressionar Enter ---
+void pausar(void) {
     printf("\nPressione ENTER para continuar...");
     fflush(stdout);
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF); //limpar lixo
 
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF); // limpa buffer residual
 }

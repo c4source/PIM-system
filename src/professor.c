@@ -20,3 +20,8 @@ void editarProfessor() {
 void excluirProfessor() {
     systemPython("scripts/delete_json_professor.py", "data/professores.json");
 }
+
+void relatorioDisciplinasdoProfessor() {
+    systemPython("scripts/relatorio_professor.py", "data/professores.json");
+}
+

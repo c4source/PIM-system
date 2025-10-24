@@ -1,9 +1,10 @@
 [
     {
-        "id": "1",
-        "titulo": "Jogo da velha",
-        "descricao": "Desenvolver uma aplicacao de jogo da velha",
-        "aulaId": "1",
-        "nota": "10"
+        "id": 1,
+        "titulo": "Lista 1",
+        "descricao": "Fazer todos os 20 exercicios",
+        "turmaId": 1,
+        "aulaId": 1,
+        "professorId": 1
     }
 ]

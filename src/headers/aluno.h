@@ -6,6 +6,7 @@ typedef struct {
     char nome[100];
     char email[50];
     char senha[20];
+    int turmaId;
 } Aluno;
 
 void listarAlunos();

@@ -29,6 +29,8 @@ except (FileNotFoundError, json.JSONDecodeError):
     print("Erro: arquivo nao encontrado ou vazio.")
     sys.exit(1)
 
+print("========== EDIÇÃO DE ADMINISTRADOR ==========\n")
+
 id_alvo = input("Digite o ID do administrador que deseja editar: ").strip()
 
 # procura administrador pelo id
@@ -61,4 +63,4 @@ else:
 with open(arquivo_json, "w") as f:
     json.dump(dados, f, indent=4)
 
-print("Administrador atualizado com sucesso!")
+print("Registro atualizado com sucesso!")

@@ -12,6 +12,11 @@
 
 // Exibe a tela de login, chama o validador Python e retorna:
 //  1=admin, 2=professor, 3=aluno, -1=sair
+int realizarLogin(void);
+
+extern int tipoUsuarioAtual;
+extern int idUsuarioAtual;
+extern char usuarioNome[128];
 void lerSenhaOculta(char *dest, int maxlen, int mostrarAsterisco);
 
 int validarCredenciais(const char *email, const char *senha);
